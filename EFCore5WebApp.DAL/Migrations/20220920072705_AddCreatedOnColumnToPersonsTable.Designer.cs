@@ -4,14 +4,16 @@ using EFCore5WebApp.Core;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EFCore5WebApp.DAL.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220920072705_AddCreatedOnColumnToPersonsTable")]
+    partial class AddCreatedOnColumnToPersonsTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -466,44 +468,12 @@ namespace EFCore5WebApp.DAL.Migrations
                         });
                 });
 
-            modelBuilder.Entity("PersonPerson", b =>
-                {
-                    b.Property<int>("ChildrenId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ParentsId")
-                        .HasColumnType("int");
-
-                    b.HasKey("ChildrenId", "ParentsId");
-
-                    b.HasIndex("ParentsId");
-
-                    b.ToTable("PersonPerson");
-                });
-
             modelBuilder.Entity("EFCore5WebApp.Core.Entities.Address", b =>
                 {
-                    b.HasOne("EFCore5WebApp.Core.Entities.Person", "Person")
+                    b.HasOne("EFCore5WebApp.Core.Entities.Person", null)
                         .WithMany("Addresses")
                         .HasForeignKey("PersonId")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Person");
-                });
-
-            modelBuilder.Entity("PersonPerson", b =>
-                {
-                    b.HasOne("EFCore5WebApp.Core.Entities.Person", null)
-                        .WithMany()
-                        .HasForeignKey("ChildrenId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("EFCore5WebApp.Core.Entities.Person", null)
-                        .WithMany()
-                        .HasForeignKey("ParentsId")
-                        .OnDelete(DeleteBehavior.ClientCascade)
                         .IsRequired();
                 });
 

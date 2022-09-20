@@ -1,10 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EFCore5WebApp.Core.Entities
 {
-  
+    [Table("Persons", Schema = "dbo")]
     public class Person
     {
         public int Id { get; set; }
@@ -22,5 +23,13 @@ namespace EFCore5WebApp.Core.Entities
 
         //Navigation Property
         public List<Address> Addresses { get; set; } = new List<Address>();
+
+        [NotMapped]
+        public string FullName => $"{FirstName} {LastName}";
+        public DateTime CreatedOn { get; set; }
+
+        public List<Person> Parents { get; set; } = new List<Person>();
+        public List<Person> Children { get; set; } = new List<Person>();
+
     }
 }

@@ -81,8 +81,8 @@ namespace EFCore5WebApp.Core
 
             modelBuilder.Entity<Person>().HasData(new List<Person>()
             {
-                new Person(){ Id = 1, FirstName = "John", LastName = "Smith",EmailAddress = "john@smith.com"},
-                new Person(){ Id = 2, FirstName = "Susan", LastName = "Jones",EmailAddress = "john@smith.com" }
+                new Person(){ Id = 1, FirstName = "John", LastName = "Smith",EmailAddress = "john@smith.com", Age = 20},
+                new Person(){ Id = 2, FirstName = "Susan", LastName = "Jones",EmailAddress = "john@smith.com", Age = 30 }
             });
 
             modelBuilder.Entity<Address>().HasData(new List<Address>()
